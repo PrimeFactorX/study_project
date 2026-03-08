@@ -990,17 +990,20 @@ export default function Dashboard() {
                     </div>
 
                     <div className="flex items-center gap-2">
-                      <input
-                        type="date"
-                        disabled={assessment.date === null}
-                        value={assessment.date ? format(assessment.date, 'yyyy-MM-dd') : ''}
-                        onChange={(e) => {
-                          const newA = [...formAssessments];
-                          newA[idx].date = e.target.value ? new Date(e.target.value) : new Date();
-                          setFormAssessments(newA);
-                        }}
-                        className={`flex-[2] bg-white px-2 py-1.5 rounded-lg text-[12px] font-bold border-none focus:ring-2 focus:ring-pink-100 outline-none shadow-sm transition-all ${assessment.date === null ? 'text-slate-300 opacity-50' : 'text-slate-600'}`}
-                      />
+                      <div className="flex-1 min-w-0">
+                        <input
+                          type="date"
+                          disabled={assessment.date === null}
+                          value={assessment.date ? format(assessment.date, 'yyyy-MM-dd') : ''}
+                          onChange={(e) => {
+                            const newA = [...formAssessments];
+                            newA[idx].date = e.target.value ? new Date(e.target.value) : new Date();
+                            setFormAssessments(newA);
+                          }}
+                          className={`w-full bg-white px-2 py-1.5 rounded-lg text-[12px] font-bold border-none focus:ring-2 focus:ring-pink-100 outline-none shadow-sm transition-all ${assessment.date === null ? 'text-slate-300 opacity-50' : 'text-slate-600'}`}
+                        />
+                      </div>
+
                       <button
                         title="Tarihi belirsiz (Pop Quiz vs) yapmak için tıklayın."
                         onClick={(e) => {
@@ -1013,22 +1016,25 @@ export default function Dashboard() {
                           }
                           setFormAssessments(newA);
                         }}
-                        className={`px-2 py-1.5 rounded-lg text-[10px] font-bold transition-colors border shadow-sm ${assessment.date === null ? 'bg-pink-100 text-pink-700 border-pink-200' : 'bg-slate-50 text-slate-400 border-slate-200 hover:bg-slate-100'}`}
+                        className={`px-2 py-1.5 rounded-lg text-[10px] font-bold transition-colors border shadow-sm whitespace-nowrap ${assessment.date === null ? 'bg-pink-100 text-pink-700 border-pink-200' : 'bg-slate-50 text-slate-400 border-slate-200 hover:bg-slate-100'}`}
                       >
                         Tarihsiz
                       </button>
-                      <span className="text-[10px] font-bold text-slate-400">AGRLK:</span>
-                      <div className="flex-[1] relative">
-                        <input
-                          type="number" value={assessment.weight}
-                          onChange={(e) => {
-                            const newA = [...formAssessments];
-                            newA[idx].weight = parseInt(e.target.value) || 0;
-                            setFormAssessments(newA);
-                          }}
-                          className="w-full bg-white px-2 py-1.5 rounded-lg text-[12px] font-mono font-bold text-center border-none focus:ring-2 focus:ring-pink-100 outline-none shadow-sm pr-6"
-                        />
-                        <span className="absolute right-2 top-1/2 -translate-y-1/2 text-[10px] text-slate-400">%</span>
+
+                      <div className="flex items-center gap-1.5 shrink-0">
+                        <span className="text-[10px] font-bold text-slate-400">AGRLK:</span>
+                        <div className="relative w-16">
+                          <input
+                            type="number" value={assessment.weight}
+                            onChange={(e) => {
+                              const newA = [...formAssessments];
+                              newA[idx].weight = parseInt(e.target.value) || 0;
+                              setFormAssessments(newA);
+                            }}
+                            className="w-full bg-white px-2 py-1.5 rounded-lg text-[12px] font-mono font-bold text-center border-none focus:ring-2 focus:ring-pink-100 outline-none shadow-sm pr-5"
+                          />
+                          <span className="absolute right-2 top-1/2 -translate-y-1/2 text-[10px] text-slate-400 font-bold">%</span>
+                        </div>
                       </div>
                     </div>
                   </div>
